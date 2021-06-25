@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MsgCodecTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-25T07:23:42" hostname="DESKTOP-HEFPKCC" time="0.222">
+  <properties/>
+  <testcase name="testMsgEncoder2()" classname="MsgCodecTest" time="0.222"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
