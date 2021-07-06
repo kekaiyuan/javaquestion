@@ -1,32 +1,45 @@
 package com.kky;
 
-import java.io.BufferedReader;
-import java.io.CharArrayWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class TextDebug {
 
     public static void main(String[] args) throws Exception {
         //textDebug("");
 
-        autoForm("oracle.txt");
+//        File file = new File("D:\\DK\\Github\\kekaiyuan.github.io\\_posts");
+//        searchFile(file);
 
+        autoForm("oracle.txt");
     }
+
+    static void searchFile(File file) throws Exception {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for(File f:files){
+                searchFile(f);
+            }
+        }else{
+            if(file.toString().toLowerCase().endsWith(".md")){
+                //System.out.println(file.getAbsoluteFile());
+                textDebug(file);
+            }
+        }
+    }
+
+
 
     /**
      * 替换乱码
-     * @param path
+     * @param file
      * @throws Exception
      */
-    static void textDebug(String path) throws Exception{
+    static void textDebug(File file) throws Exception{
         String[] wrong = {"丌", "戒", "幵", "亍"};
         String[] correct = {"不", "或", "并", "于"};
 
         //读取文件
-        File file = new File(path);
+        //File file = new File(path);
 
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
 

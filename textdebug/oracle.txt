@@ -1,5 +1,8 @@
-| NAME | 语文 | 数学 | 英语 |
-| -------------------- | ---------- | ---------- | ---------- |
-| 王五 | 99 | 66 | 91 |
-| 李四 | 89 | 76 | 90 |
-| 张三 | 78 | 88 | 98 |
+| 返回值 | 方法和描述 |
+| ---- | ---- |
+| Constructor<T> | getDeclaredConstructor(类<?>... parameterTypes)返回一个 Constructor对象，该对象反映 Constructor对象表示的类或接口的指定 类函数。 |
+| Constructor<?>[] | getDeclaredConstructors() 返回一个反映 Constructor对象表示的类声明的所有 Constructor对象的数组 类 。 |
+| Field | getDeclaredField(String name) 返回一个 Field对象，它反映此表示的类或接口的指定已声明字段 类对象。 |
+| Field[] | getDeclaredFields() 返回的数组 Field对象反映此表示的类或接口声明的所有字段 类对象。 |
+| 方法 | getDeclaredMethod(String name, 类<?>... parameterTypes) 返回一个 方法对象，它反映此表示的类或接口的指定声明的方法 类对象。 |
+| 方法[] | getDeclaredMethods() 返回包含一个数组 方法对象反射的类或接口的所有声明的方法，通过此表示 类对象，包括公共，保护，默认（包）访问和私有方法，但不包括继承的方法。 |
