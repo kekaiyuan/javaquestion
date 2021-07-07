@@ -2,7 +2,7 @@ package com.kky.dao.impl;
 
 import com.kky.dao.EmpDao;
 import com.kky.entity.Emp;
-import com.kky.util.DBUtil;
+import com.kky.util.OracleDBUtil;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -20,21 +20,21 @@ public class EmpDaoImpl2 implements EmpDao {
      */
     @Override
     public void insert(Emp emp) {
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         PreparedStatement preparedStatement = null;
         try {
-            String sql = "insert into emp values(?,?,?,?,?,?,?,?)" ;
+            String sql = "insert into emp values(?,?,?,?,?,?,?,?)";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,emp.getEmpno());
-            preparedStatement.setString(2,emp.getEname());
-            preparedStatement.setString(3,emp.getJob());
-            preparedStatement.setInt(4,emp.getMgr());
+            preparedStatement.setInt(1, emp.getEmpno());
+            preparedStatement.setString(2, emp.getEname());
+            preparedStatement.setString(3, emp.getJob());
+            preparedStatement.setInt(4, emp.getMgr());
             preparedStatement.setDate(
                     5,
                     new java.sql.Date(new SimpleDateFormat("yyyy-mm-dd").parse(emp.getHiredate()).getTime()));
-            preparedStatement.setDouble(6,emp.getSal());
-            preparedStatement.setDouble(7,emp.getComm());
-            preparedStatement.setInt(8,emp.getDeptno());
+            preparedStatement.setDouble(6, emp.getSal());
+            preparedStatement.setDouble(7, emp.getComm());
+            preparedStatement.setInt(8, emp.getDeptno());
 
             //返回值表示受影响的行数
             int i = preparedStatement.executeUpdate();
@@ -45,19 +45,19 @@ public class EmpDaoImpl2 implements EmpDao {
         } catch (ParseException e) {
             e.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, preparedStatement);
+            OracleDBUtil.closeConnection(connection, preparedStatement);
         }
     }
 
     @Override
     public void delete(Emp emp) {
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         PreparedStatement preparedStatement = null;
         try {
 
-            String sql = "delete from emp where empno = ?" ;
+            String sql = "delete from emp where empno = ?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,emp.getEmpno());
+            preparedStatement.setInt(1, emp.getEmpno());
 
             //返回值表示受影响的行数
             int i = preparedStatement.executeUpdate();
@@ -66,7 +66,7 @@ public class EmpDaoImpl2 implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, preparedStatement);
+            OracleDBUtil.closeConnection(connection, preparedStatement);
         }
     }
 
@@ -78,13 +78,13 @@ public class EmpDaoImpl2 implements EmpDao {
     @Override
     public Emp getEmpByEmpno(Integer empno) {
         Emp emp = null;
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             String sql = "select * from emp where empno = ?";
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1,empno);
+            preparedStatement.setInt(1, empno);
 
             resultSet = preparedStatement.executeQuery();
 
@@ -106,7 +106,7 @@ public class EmpDaoImpl2 implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, preparedStatement,resultSet);
+            OracleDBUtil.closeConnection(connection, preparedStatement, resultSet);
         }
         return emp;
     }
@@ -114,15 +114,15 @@ public class EmpDaoImpl2 implements EmpDao {
     @Override
     public Emp getEmpByEname(String ename) {
         Emp emp = null;
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
 
-            String sql = "select * from emp where ename = ?" ;
+            String sql = "select * from emp where ename = ?";
             preparedStatement = connection.prepareStatement(sql);
             System.out.println(sql);
-            preparedStatement.setString(1,ename);
+            preparedStatement.setString(1, ename);
             resultSet = preparedStatement.executeQuery();
             //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 
@@ -142,7 +142,7 @@ public class EmpDaoImpl2 implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, preparedStatement,resultSet);
+            OracleDBUtil.closeConnection(connection, preparedStatement, resultSet);
         }
         return emp;
     }

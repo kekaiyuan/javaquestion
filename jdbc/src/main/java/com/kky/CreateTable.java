@@ -9,9 +9,6 @@ import java.sql.Statement;
  * @date 2021/07/04 20:14
  */
 
-/**
- * 当执行ddl语句的时候，不会返回对应的
- */
 public class CreateTable {
     public static void main(String[] args) throws Exception{
         Class.forName("oracle.jdbc.driver.OracleDriver");

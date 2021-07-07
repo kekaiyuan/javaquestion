@@ -1,9 +1,8 @@
 package com.kky.dao.impl;
 
-import com.kky.util.DBUtil;
+import com.kky.util.OracleDBUtil;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -17,7 +16,7 @@ public class BatchDaoImpl {
     }
 
     public static void insertBatch() {
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         PreparedStatement preparedStatement = null;
 
         try {
@@ -35,7 +34,7 @@ public class BatchDaoImpl {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, preparedStatement);
+            OracleDBUtil.closeConnection(connection, preparedStatement);
         }
 
     }

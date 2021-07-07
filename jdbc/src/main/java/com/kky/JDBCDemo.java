@@ -1,7 +1,5 @@
 package com.kky;
 
-import com.kky.dao.impl.EmpDaoImpl;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,6 +15,9 @@ import java.sql.Statement;
 public class JDBCDemo {
 
     public static void main(String[] args) throws Exception {
+        queryByEname("'kky0' or 1=1");
+        System.exit(0);
+
 
         /*
         1、加载驱动
@@ -32,12 +33,13 @@ public class JDBCDemo {
         username:用户名
         password:密码
          */
-        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "scott", "tiger");
+        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521" +
+                ":orcl", "scott", "tiger");
 
         //3、测试连接是否成功
-        if(connection != null){
+        if (connection != null) {
             System.out.println("连接成功");
-        }else{
+        } else {
             System.out.println("连接失败");
         }
 
@@ -85,8 +87,30 @@ public class JDBCDemo {
         //8、关闭连接
         statement.close();
         connection.close();
-
-        EmpDaoImpl empDao = new EmpDaoImpl();
     }
 
+    public static void queryByEname(String ename) throws Exception {
+
+        Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521" +
+                ":orcl", "scott", "tiger");
+        String sql = "select * from emp where ename = " + "'" + ename + "'";
+        //String sql = "select * from emp where ename = " + ename ;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            //读取第一列
+            int anInt = resultSet.getInt(1);
+            System.out.println(anInt);
+            //读取 ename
+//            String ename = resultSet.getString("ename");
+//            System.out.println(ename);
+            System.out.println("-----------------");
+        }
+
+        //8、关闭连接
+        statement.close();
+        connection.close();
+
+    }
 }

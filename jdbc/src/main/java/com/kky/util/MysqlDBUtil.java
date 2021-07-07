@@ -6,14 +6,14 @@ import java.sql.*;
  * @author 柯凯元
  * @date 2021/07/04 21:00
  */
-public class DBUtil {
-    public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
-    public static final String USER = "scott";
-    public static final String PASSWORD = "tiger";
+public class MysqlDBUtil {
+    public static final String URL = "jdbc:mysql://localhost:3306/test";
+    public static final String USER = "root";
+    public static final String PASSWORD = "123456";
 
     static {
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

@@ -1,16 +1,14 @@
 package com.kky.reflect;
 
 import com.kky.entity.*;
-import com.kky.util.DBUtil;
+import com.kky.util.OracleDBUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author 柯凯元
@@ -36,7 +34,7 @@ public class BaseDaoImpl {
 
         try {
             //建立连接
-            connection = DBUtil.getConnection();
+            connection = OracleDBUtil.getConnection();
 
             //创建预处理块对象
             statement = connection.prepareStatement(sql);
@@ -99,7 +97,7 @@ public class BaseDaoImpl {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, statement, resultSet);
+            OracleDBUtil.closeConnection(connection, statement, resultSet);
         }
 
         return list;
@@ -110,7 +108,7 @@ public class BaseDaoImpl {
         PreparedStatement statement = null;
 
         try {
-            connection = DBUtil.getConnection();
+            connection = OracleDBUtil.getConnection();
 
             Class aClass = object.getClass();
             Method[] declaredMethods = aClass.getDeclaredMethods();
@@ -146,7 +144,7 @@ public class BaseDaoImpl {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, statement);
+            OracleDBUtil.closeConnection(connection, statement);
         }
     }
 

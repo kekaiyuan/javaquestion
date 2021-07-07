@@ -2,14 +2,12 @@ package com.kky.dao.impl;
 
 import com.kky.dao.EmpDao;
 import com.kky.entity.Emp;
-import com.kky.util.DBUtil;
+import com.kky.util.OracleDBUtil;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author 柯凯元
@@ -23,7 +21,7 @@ public class EmpDaoImpl implements EmpDao {
      */
     @Override
     public void insert(Emp emp) {
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -46,13 +44,13 @@ public class EmpDaoImpl implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, statement);
+            OracleDBUtil.closeConnection(connection, statement);
         }
     }
 
     @Override
     public void delete(Emp emp) {
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -66,7 +64,7 @@ public class EmpDaoImpl implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, statement);
+            OracleDBUtil.closeConnection(connection, statement);
         }
     }
 
@@ -78,7 +76,7 @@ public class EmpDaoImpl implements EmpDao {
     @Override
     public Emp getEmpByEmpno(Integer empno) {
         Emp emp = null;
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         Statement statement = null;
         ResultSet resultSet = null;
         try {
@@ -105,7 +103,7 @@ public class EmpDaoImpl implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, statement,resultSet);
+            OracleDBUtil.closeConnection(connection, statement,resultSet);
         }
         return emp;
     }
@@ -113,7 +111,7 @@ public class EmpDaoImpl implements EmpDao {
     @Override
     public Emp getEmpByEname(String ename) {
         Emp emp = null;
-        Connection connection = DBUtil.getConnection();
+        Connection connection = OracleDBUtil.getConnection();
         Statement statement = null;
         ResultSet resultSet = null;
         try {
@@ -140,7 +138,7 @@ public class EmpDaoImpl implements EmpDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
-            DBUtil.closeConnection(connection, statement,resultSet);
+            OracleDBUtil.closeConnection(connection, statement,resultSet);
         }
         return emp;
     }
