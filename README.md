@@ -7,4 +7,14 @@
     - 客户端与服务器一对一通信
     - 服务器转发某客户端的消息给其他所有客户端
 - 自用的一个小程序，处理一些在写博客时的文本问题 [https://github.com/kekaiyuan/javaquestion/tree/main/textdebug](https://github.com/kekaiyuan/javaquestion/tree/main/textdebug)
+- 一个 jdbc demo [https://github.com/kekaiyuan/javaquestion/tree/main/jdbc](https://github.com/kekaiyuan/javaquestion/tree/main/jdbc)
+	- 读写数据库以及批处理
+	- 数据库连接池的使用，包括
+		- c3p0
+		- dbcp
+		- durid
+		- hikaricp
+	- 反射的基本使用
+	- 使用反射进行数据库读写
+
 
