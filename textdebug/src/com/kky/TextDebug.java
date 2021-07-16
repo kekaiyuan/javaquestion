@@ -5,43 +5,43 @@ import java.io.*;
 public class TextDebug {
 
     public static void main(String[] args) throws Exception {
-        //textDebug("");
+        textDebug(new File("D:\\DK\\Github\\kekaiyuan.github" +
+                ".io\\_posts\\java\\study\\2021-06-06-10-thread.md"));
 
-//        File file = new File("D:\\DK\\Github\\kekaiyuan.github.io\\_posts");
-//        searchFile(file);
+        //searchFile(new File("D:\\DK\\Github\\kekaiyuan.github.io\\_posts"););
 
-        autoForm("oracle.txt");
+        //autoForm("oracle.txt");
     }
 
     static void searchFile(File file) throws Exception {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
-            for(File f:files){
+            for (File f : files) {
                 searchFile(f);
             }
-        }else{
-            if(file.toString().toLowerCase().endsWith(".md")){
+        } else {
+            if (file.toString().toLowerCase().endsWith(".md")) {
                 //System.out.println(file.getAbsoluteFile());
                 textDebug(file);
             }
         }
     }
 
-
-
     /**
      * 替换乱码
+     *
      * @param file
      * @throws Exception
      */
-    static void textDebug(File file) throws Exception{
-        String[] wrong = {"丌", "戒", "幵", "亍"};
-        String[] correct = {"不", "或", "并", "于"};
+    static void textDebug(File file) throws Exception {
+        String[] wrong = {"丌", "戒", "幵", "亍", "迚"};
+        String[] correct = {"不", "或", "并", "于", "进"};
 
         //读取文件
         //File file = new File(path);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file),
+                "UTF-8"));
 
         //内存流
         CharArrayWriter caw = new CharArrayWriter();
@@ -77,14 +77,16 @@ public class TextDebug {
 
     /**
      * 将 Oracle 中的表转为 markdown 支持的表格格式
+     *
      * @param path
      * @throws Exception
      */
-    static void autoForm(String path) throws Exception{
+    static void autoForm(String path) throws Exception {
         //读取文件
         File file = new File(path);
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file),
+                "UTF-8"));
 
         //内存流
         CharArrayWriter caw = new CharArrayWriter();
@@ -95,12 +97,12 @@ public class TextDebug {
         //以行为单位进行遍历
         while ((line = br.readLine()) != null) {
 
-            while(line.contains("  ")){
-                line = line.replaceAll("  "," | ");
+            while (line.contains("  ")) {
+                line = line.replaceAll("  ", " | ");
             }
 
-            while(line.contains("| |")){
-                line = line.replaceAll("[|] [|]","|");
+            while (line.contains("| |")) {
+                line = line.replaceAll("[|] [|]", "|");
             }
 
             line = "| " + line + " |";
